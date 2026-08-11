@@ -156,7 +156,7 @@ h1, h2, h3 {
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  min-height: calc(90vh - var(--nav-height));
+  min-height: calc(100dvh - var(--nav-height));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -597,4 +597,39 @@ h1, h2, h3 {
   .hero-image {
     transform: none !important;
   }
+
+  html.snap-page {
+    scroll-snap-type: none;
+  }
+}
+
+/* ---------- Full-page scroll snap (homepage & research direction pages) ---------- */
+/* Each section fills the screen and locks into place as you scroll, so the
+   next section replaces the current one like a slide change rather than
+   gradually scrolling into view. */
+html.snap-page {
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: var(--nav-height);
+}
+
+html.snap-page .hero,
+html.snap-page .section {
+  min-height: calc(100dvh - var(--nav-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+html.snap-page .site-footer {
+  min-height: calc(100dvh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+html.snap-page .footer-inner {
+  width: 100%;
 }
