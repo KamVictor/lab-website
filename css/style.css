@@ -184,6 +184,7 @@ h1, h2, h3 {
   inset: 0;
   z-index: 1;
   background: linear-gradient(180deg, rgba(9, 26, 38, 0.45) 0%, rgba(9, 26, 38, 0.75) 100%);
+  opacity: 0;
 }
 
 .hero-fade {
@@ -209,15 +210,17 @@ h1, h2, h3 {
   font-size: clamp(2.4rem, 6vw, 3.6rem);
   color: #ffffff;
   margin: 0 0 6px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55);
 }
 
 .hero .tagline {
   font-size: 0.95rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin: 0 0 20px;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
 }
 
 .hero p.lede {
@@ -225,18 +228,20 @@ h1, h2, h3 {
   margin-left: auto;
   margin-right: auto;
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.95);
   margin-bottom: 32px;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
 }
 
 .scroll-cue {
   margin-top: 12px;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
 }
 
 .scroll-cue svg {
