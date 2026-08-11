@@ -166,17 +166,18 @@ h1, h2, h3 {
 
 .hero-media {
   position: absolute;
-  inset: 0;
+  inset: -60px;
   z-index: 0;
+  background: linear-gradient(120deg, #0d2b3e, #1b4965, #5fa8d3, #1b4965, #0d2b3e);
+  background-size: 300% 300%;
+  animation: heroGradientShift 18s ease infinite;
+  will-change: transform, background-position;
 }
 
-.hero-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transform: scale(1.1);
-  will-change: transform;
+@keyframes heroGradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .hero-fade {
@@ -240,6 +241,30 @@ h1, h2, h3 {
   animation: bounce 1.6s infinite;
 }
 
+/* Word-by-word hero text reveal */
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.word-inner {
+  display: inline-block;
+  transform: translateY(115%);
+  transition: transform 0.65s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+.hero-content.is-revealed .word-inner {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word-inner {
+    transition: none;
+    transform: none;
+  }
+}
+
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(6px); }
@@ -279,12 +304,12 @@ h1, h2, h3 {
   border-radius: var(--radius);
   padding: 32px 28px;
   box-shadow: var(--shadow);
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+  transform: perspective(800px);
 }
 
 .panel-card:hover,
 .panel-card:focus-visible {
-  transform: translateY(-6px);
   box-shadow: var(--shadow-hover);
 }
 
@@ -327,6 +352,12 @@ h1, h2, h3 {
 
 .preview-grid .list-item {
   height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+  transform: perspective(800px);
+}
+
+.preview-grid .list-item:hover {
+  box-shadow: var(--shadow-hover);
 }
 
 .section-foot {
@@ -354,11 +385,11 @@ h1, h2, h3 {
   border-radius: var(--radius);
   padding: 28px 20px;
   box-shadow: var(--shadow);
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+  transform: perspective(800px);
 }
 
 .profile-card:hover {
-  transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
 }
 
@@ -629,4 +660,31 @@ html.snap-page .site-footer {
 
 html.snap-page .footer-inner {
   width: 100%;
+}
+
+/* Each "page" scales/fades in as it becomes the active slide, and recedes
+   when it's not, for a more cinematic transition between sections. */
+html.snap-page .hero,
+html.snap-page .section,
+html.snap-page .site-footer {
+  opacity: 0.35;
+  transform: scale(0.94);
+  transition: opacity 0.7s cubic-bezier(0.16, 0.84, 0.44, 1), transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+html.snap-page .hero.is-active,
+html.snap-page .section.is-active,
+html.snap-page .site-footer.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.snap-page .hero,
+  html.snap-page .section,
+  html.snap-page .site-footer {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

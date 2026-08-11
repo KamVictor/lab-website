@@ -16,10 +16,12 @@ Website for our lab (osteoarthritis research, CUHK). Built with plain HTML/CSS/J
 | `news.html` | Lab news / updates |
 | `contact.html` | Contact info |
 | `css/style.css` | All styling (layout, nav, cards, animations) |
-| `js/main.js` | Mobile nav toggle, smooth scroll, scroll-reveal animations |
+| `js/main.js` | Mobile nav toggle, smooth scroll, tilt/parallax/text-reveal animations |
 | `assets/` | Placeholder images (SVG) |
 
 All content marked **"Placeholder"** should be replaced with real text/photos as they become available. No code changes are needed to update text — just edit the HTML directly.
+
+The hero background on the homepage and research direction pages is currently a CSS animated gradient (`.hero-media` in `css/style.css`), not an image — to swap in a real photo later, replace that gradient/animation with a `background-image` (or add back an `<img class="hero-image">`).
 
 ## Editing content
 
