@@ -179,14 +179,6 @@ h1, h2, h3 {
   will-change: transform;
 }
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(180deg, rgba(9, 26, 38, 0.45) 0%, rgba(9, 26, 38, 0.75) 100%);
-  opacity: 0;
-}
-
 .hero-fade {
   position: absolute;
   left: 0;

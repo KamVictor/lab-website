@@ -49,14 +49,6 @@ if (heroImages.length && !prefersReducedMotion) {
       if (rect.bottom < 0 || rect.top > window.innerHeight) return;
       const offset = rect.top * -0.15;
       img.style.transform = `translateY(${offset}px) scale(1.1)`;
-
-      // Overlay is invisible at rest and fades in only as the hero scrolls
-      // out of view, so the photo reads full-color on first load.
-      const overlay = hero.querySelector(".hero-overlay");
-      if (overlay) {
-        const scrolledPast = Math.min(Math.max(-rect.top / rect.height, 0), 1);
-        overlay.style.opacity = String(scrolledPast);
-      }
     });
     ticking = false;
   };
