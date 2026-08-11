@@ -2,7 +2,7 @@
 
 Website for our lab (osteoarthritis research, CUHK). Built with plain HTML/CSS/JS — no build step, no framework — so anyone in the lab can open a file on GitHub and edit it directly.
 
-**Live site:** https://kamvictor.github.io/lab-website
+**Live site:** https://lab-website-tau.vercel.app (mirrored at https://kamvictor.github.io/lab-website)
 
 ## Structure
 
@@ -44,4 +44,4 @@ The repo owner can add lab members as collaborators under **Settings → Collabo
 
 ## Deployment
 
-The repo is public and GitHub Pages is enabled (**Settings → Pages → Source: Deploy from a branch → `main` / `root`**). Every push to `main` updates the live site within a few minutes — no separate deploy step needed.
+The repo is connected to Vercel (project `lab-website`). Every push to `main` auto-deploys to production; every other branch/PR gets its own preview URL automatically, so collaborators can review edits before they're merged. GitHub Pages is also enabled as a mirror (**Settings → Pages → Source: Deploy from a branch → `main` / `root`**) and updates on every push too.
