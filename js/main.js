@@ -34,6 +34,38 @@ if (mapToggle && mapEmbed) {
   });
 }
 
+// Hero parallax — image drifts slower than scroll for a smoother, more gradual feel
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const heroImages = document.querySelectorAll(".hero-image");
+
+if (heroImages.length && !prefersReducedMotion) {
+  let ticking = false;
+
+  const updateParallax = () => {
+    heroImages.forEach((img) => {
+      const hero = img.closest(".hero");
+      if (!hero) return;
+      const rect = hero.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      const offset = rect.top * -0.15;
+      img.style.transform = `translateY(${offset}px) scale(1.1)`;
+    });
+    ticking = false;
+  };
+
+  updateParallax();
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+}
+
 // Scroll-reveal animations
 const revealEls = document.querySelectorAll(".reveal");
 

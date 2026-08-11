@@ -175,17 +175,31 @@ h1, h2, h3 {
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1.1);
+  will-change: transform;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(180deg, rgba(9, 26, 38, 0.45) 0%, rgba(9, 26, 38, 0.75) 100%);
+}
+
+.hero-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 180px;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(244, 248, 251, 0) 0%, var(--color-bg) 100%);
+  pointer-events: none;
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 640px;
   text-align: center;
   color: #ffffff;
@@ -541,11 +555,46 @@ h1, h2, h3 {
 /* ---------- Scroll reveal ---------- */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(32px) scale(0.98);
+  transition: opacity 0.9s cubic-bezier(0.16, 0.84, 0.44, 1), transform 0.9s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
 
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger grid items so they settle in one after another rather than all at once */
+.panel-grid > .reveal:nth-child(2),
+.card-grid > .reveal:nth-child(2),
+.list-block > .reveal:nth-child(2),
+.contact-grid > .reveal:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.panel-grid > .reveal:nth-child(3),
+.card-grid > .reveal:nth-child(3),
+.list-block > .reveal:nth-child(3),
+.contact-grid > .reveal:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.card-grid > .reveal:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+
+  .hero-image {
+    transform: none !important;
+  }
 }
