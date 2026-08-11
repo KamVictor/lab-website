@@ -16,6 +16,24 @@ if (navToggle && navLinks) {
   });
 }
 
+// Footer map toggle
+const mapToggle = document.getElementById("mapToggle");
+const mapEmbed = document.getElementById("mapEmbed");
+
+if (mapToggle && mapEmbed) {
+  mapToggle.addEventListener("click", () => {
+    const isHidden = mapEmbed.hasAttribute("hidden");
+    if (isHidden) {
+      mapEmbed.removeAttribute("hidden");
+      mapToggle.textContent = "Close the map";
+    } else {
+      mapEmbed.setAttribute("hidden", "");
+      mapToggle.textContent = "Open the map";
+    }
+    mapToggle.setAttribute("aria-expanded", String(isHidden));
+  });
+}
+
 // Scroll-reveal animations
 const revealEls = document.querySelectorAll(".reveal");
 
